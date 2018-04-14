@@ -1,14 +1,20 @@
 module AFrame.Primitives exposing (cylinder, src, radius, height)
 
-import AFrame exposing (Node, Attribute, Supported, node, attribute)
+import AFrame
+    exposing
+        ( Node
+        , Attribute
+        , NodeAttribute
+        , Supported
+        , node
+        , attribute
+        )
 
 
 cylinder :
     List
-        (Attribute
-            { any : Supported
-            , id : Supported
-            , height : Supported
+        (NodeAttribute
+            { height : Supported
             , src : Supported
             , radius : Supported
             }
