@@ -4,9 +4,11 @@ import AFrame
     exposing
         ( Node
         , Attribute
-        , NodeAttribute
+        , Entity
+        , EntityAttribute
+        , ChildEntity
         , Supported
-        , node
+        , primitive
         , toAttribute
         )
 import AFrame.Components.Geometry as Geometry
@@ -15,17 +17,17 @@ import AFrame.Components.Material as Material
 
 cylinder :
     List
-        (NodeAttribute
+        (EntityAttribute
             { height : Supported
             , src : Supported
             , radius : Supported
             }
             msg
         )
-    -> List (Node msg)
-    -> Node msg
+    -> List (ChildEntity {} msg)
+    -> Entity a msg
 cylinder =
-    node "a-cylinder"
+    primitive "a-cylinder"
 
 
 height : number -> Attribute { a | height : Supported } msg

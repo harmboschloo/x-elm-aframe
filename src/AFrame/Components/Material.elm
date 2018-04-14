@@ -12,14 +12,14 @@ module AFrame.Components.Material
         , src
         )
 
-import AFrame exposing (Attribute, Property, Supported, component)
+import AFrame exposing (Attribute, Property, Supported, Component, component)
 import AFrame.Properties as Properties
 
 
 material :
     Shader a
     -> List (MaterialProperty a)
-    -> Attribute { a | material : Supported } msg
+    -> Component b msg
 material (Shader shader) properties =
     component "material" (Properties.string "shader" shader :: properties)
 

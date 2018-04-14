@@ -18,14 +18,14 @@ module AFrame.Components.Geometry
         , thetaLength
         )
 
-import AFrame exposing (Attribute, Property, Supported, component)
+import AFrame exposing (Attribute, Property, Supported, Component, component)
 import AFrame.Properties as Properties
 
 
 geometry :
     Primitive a
     -> List (GeometryProperty a)
-    -> Attribute { a | geometry : Supported } msg
+    -> Component b msg
 geometry (Primitive primitive) properties =
     component "geometry" (Properties.string "primitive" primitive :: properties)
 
