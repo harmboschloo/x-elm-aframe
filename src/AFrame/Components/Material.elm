@@ -1,19 +1,19 @@
-module AFrame.Components
+module AFrame.Components.Material
     exposing
         ( material
         , Shader
+        , MaterialProperty
         , standard
         , Side
         , side
         , front
         , back
         , double
+        , src
         )
 
-import AFrame exposing (Attribute, Property, Supported, component, property)
-
-
--- MATERIAL
+import AFrame exposing (Attribute, Property, Supported, component)
+import AFrame.Properties as Properties
 
 
 material :
@@ -21,11 +21,22 @@ material :
     -> List (MaterialProperty a)
     -> Attribute { a | material : Supported } msg
 material (Shader shader) properties =
-    component "material" (property "shader" shader :: properties)
+    component "material" (Properties.string "shader" shader :: properties)
 
 
 type Shader supports
     = Shader String
+
+
+type alias MaterialProperty a =
+    Property
+        { a
+            | side : Supported
+        }
+
+
+
+-- SHADERS
 
 
 standard :
@@ -36,11 +47,8 @@ standard =
     Shader "standard"
 
 
-type alias MaterialProperty a =
-    Property
-        { a
-            | side : Supported
-        }
+
+-- PROPERTIES
 
 
 type Side
@@ -49,7 +57,7 @@ type Side
 
 side : Side -> Property { a | side : Supported }
 side (Side side) =
-    property "side" side
+    Properties.string "side" side
 
 
 front : Side
@@ -67,14 +75,6 @@ double =
     Side "double"
 
 
-type Src
-    = Src String
-
-
-src : Src -> Property { a | src : Supported }
-src (Src src) =
-    property "src" src
-
--- imageId 
--- videoId
--- url
+src : String -> Property { a | src : Supported }
+src =
+    Properties.string "src"

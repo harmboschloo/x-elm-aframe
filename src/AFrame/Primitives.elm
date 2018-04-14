@@ -7,8 +7,10 @@ import AFrame
         , NodeAttribute
         , Supported
         , node
-        , attribute
+        , toAttribute
         )
+import AFrame.Components.Geometry as Geometry
+import AFrame.Components.Material as Material
 
 
 cylinder :
@@ -26,16 +28,16 @@ cylinder =
     node "a-cylinder"
 
 
-height : String -> Attribute { a | height : Supported } msg
+height : number -> Attribute { a | height : Supported } msg
 height =
-    attribute "height"
+    Geometry.height >> toAttribute
 
 
 src : String -> Attribute { a | src : Supported } msg
 src =
-    attribute "src"
+    Material.src >> toAttribute
 
 
-radius : String -> Attribute { a | radius : Supported } msg
+radius : number -> Attribute { a | radius : Supported } msg
 radius =
-    attribute "radius"
+    Geometry.radius >> toAttribute

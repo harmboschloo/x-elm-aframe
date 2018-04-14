@@ -3,7 +3,6 @@ module AFrame
         ( Node
         , Attribute
         , Property
-        , Value
         , Supported
         , NodeAttribute
         , node
@@ -30,10 +29,6 @@ type Attribute supports msg
 
 type Property supports
     = Property String String
-
-
-type Value supports
-    = Value String
 
 
 type Supported
@@ -79,7 +74,7 @@ property name value =
     Property name value
 
 
-toAttribute : Property a -> Attribute a msg
+toAttribute : Property supports -> Attribute supports msg
 toAttribute (Property name value) =
     attribute name value
 
