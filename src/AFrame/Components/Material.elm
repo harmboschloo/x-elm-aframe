@@ -1,8 +1,13 @@
 module AFrame.Components
     exposing
         ( material
-        , Side(Front, Back, Double)
+        , Shader
+        , standard
+        , Side
         , side
+        , front
+        , back
+        , double
         )
 
 import AFrame exposing (Attribute, Property, Supported, component, property)
@@ -23,7 +28,6 @@ type Shader supports
     = Shader String
 
 
-
 standard :
     Shader
         { src : Supported
@@ -39,20 +43,38 @@ type alias MaterialProperty a =
         }
 
 
-type Side supports =
-    Side String
+type Side
+    = Side String
 
 
--- side : Side -> Property { a | side : Supported }
--- side side =
---     property "side"
---         (case side of
---             Front ->
---                 "front"
+side : Side -> Property { a | side : Supported }
+side (Side side) =
+    property "side" side
 
---             Back ->
---                 "back"
 
---             Double ->
---                 "double"
---         )
+front : Side
+front =
+    Side "front"
+
+
+back : Side
+back =
+    Side "back"
+
+
+double : Side
+double =
+    Side "double"
+
+
+type Src
+    = Src String
+
+
+src : Src -> Property { a | src : Supported }
+src (Src src) =
+    property "src" src
+
+-- imageId 
+-- videoId
+-- url
