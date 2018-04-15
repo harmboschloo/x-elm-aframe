@@ -1,10 +1,9 @@
 module AFrame.Components.Material
     exposing
-        ( material
-        , Shader
+        ( Shader
         , MaterialProperty
+        , material
         , standard
-        , Side
         , side
         , front
         , back
@@ -12,27 +11,20 @@ module AFrame.Components.Material
         , src
         )
 
-import AFrame
+import AFrame.Core
     exposing
         ( Supported
         , Attribute
-        , Component
         , Property
+        , Value
         , component
         , property
+        , valueProperty
+        , value
         )
-import AFrame.Values as Values
 
 
-material :
-    Shader accepts
-    -> List (MaterialProperty accepts)
-    -> Component provides msg
-material (Shader shader) properties =
-    component "material" (property "shader" shader :: properties)
-
-
-type Shader supports
+type Shader accepts
     = Shader String
 
 
@@ -40,7 +32,16 @@ type alias MaterialProperty accepts =
     Property
         { accepts
             | side : Supported
+            , materialSrc : Supported
         }
+
+
+material :
+    Shader accepts
+    -> List (MaterialProperty accepts)
+    -> Attribute { provides | component : Supported } msg
+material (Shader shader) properties =
+    component "material" (property "shader" shader :: properties)
 
 
 
@@ -59,30 +60,39 @@ standard =
 -- PROPERTIES
 
 
-type Side
-    = Side String
+side :
+    Value
+        { front : Supported
+        , back : Supported
+        , double : Supported
+        }
+    -> Property { provides | side : Supported }
+side =
+    valueProperty "side"
 
 
-side : Side -> Property { provides | side : Supported }
-side (Side side) =
-    property "side" side
-
-
-front : Side
+front : Value { provides | front : Supported }
 front =
-    Side "front"
+    value "front"
 
 
-back : Side
+back : Value { provides | back : Supported }
 back =
-    Side "back"
+    value "back"
 
 
-double : Side
+double : Value { provides | double : Supported }
 double =
-    Side "double"
+    value "double"
 
 
-src : String -> Property { provides | src : Supported }
+src :
+    Value
+        { imageId : Supported
+        , imageUrl : Supported
+        , videoId : Supported
+        , videoUrl : Supported
+        }
+    -> Property { provides | materialSrc : Supported }
 src =
-    Values.string >> property "src"
+    valueProperty "src"
