@@ -18,25 +18,33 @@ module AFrame.Components.Geometry
         , thetaLength
         )
 
-import AFrame exposing (Attribute, Property, Supported, Component, component)
-import AFrame.Properties as Properties
+import AFrame
+    exposing
+        ( Supported
+        , Attribute
+        , Component
+        , Property
+        , component
+        , property
+        )
+import AFrame.Values as Values
 
 
 geometry :
-    Primitive a
-    -> List (GeometryProperty a)
-    -> Component b msg
+    Primitive accepts
+    -> List (GeometryProperty accepts)
+    -> Component provides msg
 geometry (Primitive primitive) properties =
-    component "geometry" (Properties.string "primitive" primitive :: properties)
+    component "geometry" (property "primitive" primitive :: properties)
 
 
-type Primitive supports
+type Primitive accepts
     = Primitive String
 
 
-type alias GeometryProperty a =
+type alias GeometryProperty accepts =
     Property
-        { a
+        { accepts
             | buffer : Supported
             , skipCache : Supported
         }
@@ -77,56 +85,56 @@ cylinder =
 -- PROPERTIES
 
 
-width : number -> Property { a | width : Supported }
+width : number -> Property { provides | width : Supported }
 width =
-    Properties.number "width"
+    Values.number >> property "width"
 
 
-height : number -> Property { a | height : Supported }
+height : number -> Property { provides | height : Supported }
 height =
-    Properties.number "height"
+    Values.number >> property "height"
 
 
-depth : number -> Property { a | depth : Supported }
+depth : number -> Property { provides | depth : Supported }
 depth =
-    Properties.number "depth"
+    Values.number >> property "depth"
 
 
-radius : number -> Property { a | radius : Supported }
+radius : number -> Property { provides | radius : Supported }
 radius =
-    Properties.number "radius"
+    Values.number >> property "radius"
 
 
-segmentsWidth : Int -> Property { a | segmentsWidth : Supported }
+segmentsWidth : Int -> Property { provides | segmentsWidth : Supported }
 segmentsWidth =
-    Properties.number "segmentsWidth"
+    Values.number >> property "segmentsWidth"
 
 
-segmentsHeight : Int -> Property { a | segmentsHeight : Supported }
+segmentsHeight : Int -> Property { provides | segmentsHeight : Supported }
 segmentsHeight =
-    Properties.number "segmentsHeight"
+    Values.number >> property "segmentsHeight"
 
 
-segmentsDepth : Int -> Property { a | segmentsDepth : Supported }
+segmentsDepth : Int -> Property { provides | segmentsDepth : Supported }
 segmentsDepth =
-    Properties.number "segmentsDepth"
+    Values.number >> property "segmentsDepth"
 
 
-segmentsRadial : Int -> Property { a | segmentsRadial : Supported }
+segmentsRadial : Int -> Property { provides | segmentsRadial : Supported }
 segmentsRadial =
-    Properties.number "segmentsRadial"
+    Values.number >> property "segmentsRadial"
 
 
-openEnded : Bool -> Property { a | openEnded : Supported }
+openEnded : Bool -> Property { provides | openEnded : Supported }
 openEnded =
-    Properties.bool "openEnded"
+    Values.bool >> property "openEnded"
 
 
-thetaStart : number -> Property { a | thetaStart : Supported }
+thetaStart : number -> Property { provides | thetaStart : Supported }
 thetaStart =
-    Properties.number "thetaStart"
+    Values.number >> property "thetaStart"
 
 
-thetaLength : number -> Property { a | thetaLength : Supported }
+thetaLength : number -> Property { provides | thetaLength : Supported }
 thetaLength =
-    Properties.number "thetaLength"
+    Values.number >> property "thetaLength"

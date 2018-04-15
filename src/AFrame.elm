@@ -43,31 +43,31 @@ type Supported
     = Supported
 
 
-type Attribute supports msg
+type Attribute provides msg
     = Attribute (Html.Attribute msg)
 
 
-attribute : String -> String -> Attribute supports msg
+attribute : String -> String -> Attribute provides msg
 attribute name value =
     Attribute (Html.Attributes.attribute name value)
 
 
-type Node supports msg
+type Node provides msg
     = Node (Html.Html msg)
 
 
-type alias NodeAttribute a msg =
+type alias NodeAttribute accepts msg =
     Attribute
-        { a
+        { accepts
             | any : Supported
             , id : Supported
         }
         msg
 
 
-type alias ChildNode a msg =
+type alias ChildNode accepts msg =
     Node
-        { a
+        { accepts
             | any : Supported
         }
         msg
@@ -75,9 +75,9 @@ type alias ChildNode a msg =
 
 node :
     String
-    -> List (NodeAttribute a msg)
-    -> List (ChildNode b msg)
-    -> Node supports msg
+    -> List (NodeAttribute acceptsNode msg)
+    -> List (ChildNode acceptsChild msg)
+    -> Node provides msg
 node name attributes children =
     Node <|
         Html.node name
@@ -99,21 +99,21 @@ unwrapNode (Node html) =
 --  NODES
 
 
-type alias Entity a msg =
-    Node { a | entity : Supported } msg
+type alias Entity provides msg =
+    Node { provides | entity : Supported } msg
 
 
-type alias EntityAttribute a msg =
+type alias EntityAttribute accepts msg =
     NodeAttribute
-        { a
+        { accepts
             | component : Supported
         }
         msg
 
 
-type alias ChildEntity a msg =
+type alias ChildEntity accepts msg =
     ChildNode
-        { a
+        { accepts
             | entity : Supported
         }
         msg
@@ -122,20 +122,20 @@ type alias ChildEntity a msg =
 entity :
     List (EntityAttribute {} msg)
     -> List (ChildEntity {} msg)
-    -> Entity a msg
+    -> Entity provides msg
 entity =
     node "a-entity"
 
 
-type alias Primitive a msg =
-    Entity a msg
+type alias Primitive accepts msg =
+    Entity accepts msg
 
 
 primitive :
     String
-    -> List (EntityAttribute a msg)
+    -> List (EntityAttribute accepts msg)
     -> List (ChildEntity {} msg)
-    -> Primitive c msg
+    -> Primitive provides msg
 primitive =
     node
 
@@ -152,8 +152,8 @@ scene attributes children =
     node "a-scene" attributes children |> unwrapNode
 
 
-type alias Assets a msg =
-    Node { a | assets : Supported } msg
+type alias Assets provides msg =
+    Node { provides | assets : Supported } msg
 
 
 assets :
@@ -168,7 +168,7 @@ assets :
                 }
                 msg
             )
-    -> Assets a msg
+    -> Assets provides msg
 assets =
     node "a-assets"
 
@@ -177,8 +177,8 @@ assets =
 -- ASSET NODES
 
 
-type alias AssetItem a msg =
-    Node { a | assetItem : Supported } msg
+type alias AssetItem provides msg =
+    Node { provides | assetItem : Supported } msg
 
 
 assetItem :
@@ -188,13 +188,13 @@ assetItem :
             }
             msg
         )
-    -> AssetItem a msg
+    -> AssetItem provides msg
 assetItem attributes =
     node "a-asset-item" attributes []
 
 
-type alias Image a msg =
-    Node { a | image : Supported } msg
+type alias Image provides msg =
+    Node { provides | image : Supported } msg
 
 
 image :
@@ -204,13 +204,13 @@ image :
             }
             msg
         )
-    -> Image a msg
+    -> Image provides msg
 image attributes =
     node "img" attributes []
 
 
-type alias Audio a msg =
-    Node { a | audio : Supported } msg
+type alias Audio provides msg =
+    Node { provides | audio : Supported } msg
 
 
 audio :
@@ -220,13 +220,13 @@ audio :
             }
             msg
         )
-    -> Audio a msg
+    -> Audio provides msg
 audio attributes =
     node "audio" attributes []
 
 
-type alias Video a msg =
-    Node { a | video : Supported } msg
+type alias Video provides msg =
+    Node { provides | video : Supported } msg
 
 
 video :
@@ -236,7 +236,7 @@ video :
             }
             msg
         )
-    -> Video a msg
+    -> Video provides msg
 video attributes =
     node "video" attributes []
 
@@ -245,14 +245,14 @@ video attributes =
 -- COMPONENTS
 
 
-type alias Component a msg =
-    Attribute { a | component : Supported } msg
+type alias Component provides msg =
+    Attribute { provides | component : Supported } msg
 
 
 component :
     String
-    -> List (Property a)
-    -> Component b msg
+    -> List (Property accepts)
+    -> Component provides msg
 component name properties =
     properties
         |> List.map (\(Property name value) -> name ++ ":" ++ value)
@@ -260,21 +260,21 @@ component name properties =
         |> attribute name
 
 
-type Property a
+type Property provides
     = Property String String
 
 
-property : String -> String -> Property a
+property : String -> String -> Property provides
 property name value =
     Property name value
 
 
-toAttribute : Property a -> Attribute b msg
+toAttribute : Property provides -> Attribute provides msg
 toAttribute (Property name value) =
     attribute name value
 
 
-toAttributeOf : String -> Property a -> Attribute b msg
+toAttributeOf : String -> Property providesA -> Attribute providesB msg
 toAttributeOf name (Property _ value) =
     attribute name value
 
@@ -283,11 +283,11 @@ toAttributeOf name (Property _ value) =
 --  ATRRIBUTES
 
 
-id : String -> Attribute { a | id : Supported } msg
+id : String -> Attribute { provides | id : Supported } msg
 id =
     attribute "id"
 
 
-src : String -> Attribute { a | src : Supported } msg
+src : String -> Attribute { provides | src : Supported } msg
 src =
     attribute "src"

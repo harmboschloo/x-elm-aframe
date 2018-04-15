@@ -25,21 +25,21 @@ cylinder :
             msg
         )
     -> List (ChildEntity {} msg)
-    -> Entity a msg
+    -> Entity provides msg
 cylinder =
     primitive "a-cylinder"
 
 
-height : number -> Attribute { a | height : Supported } msg
+height : number -> Attribute { provides | height : Supported } msg
 height =
     Geometry.height >> toAttribute
 
 
-src : String -> Attribute { a | src : Supported } msg
+src : String -> Attribute { provides | src : Supported } msg
 src =
     Material.src >> toAttribute
 
 
-radius : number -> Attribute { a | radius : Supported } msg
+radius : number -> Attribute { provides | radius : Supported } msg
 radius =
     Geometry.radius >> toAttribute

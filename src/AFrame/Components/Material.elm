@@ -12,25 +12,33 @@ module AFrame.Components.Material
         , src
         )
 
-import AFrame exposing (Attribute, Property, Supported, Component, component)
-import AFrame.Properties as Properties
+import AFrame
+    exposing
+        ( Supported
+        , Attribute
+        , Component
+        , Property
+        , component
+        , property
+        )
+import AFrame.Values as Values
 
 
 material :
-    Shader a
-    -> List (MaterialProperty a)
-    -> Component b msg
+    Shader accepts
+    -> List (MaterialProperty accepts)
+    -> Component provides msg
 material (Shader shader) properties =
-    component "material" (Properties.string "shader" shader :: properties)
+    component "material" (property "shader" shader :: properties)
 
 
 type Shader supports
     = Shader String
 
 
-type alias MaterialProperty a =
+type alias MaterialProperty accepts =
     Property
-        { a
+        { accepts
             | side : Supported
         }
 
@@ -55,9 +63,9 @@ type Side
     = Side String
 
 
-side : Side -> Property { a | side : Supported }
+side : Side -> Property { provides | side : Supported }
 side (Side side) =
-    Properties.string "side" side
+    property "side" side
 
 
 front : Side
@@ -75,6 +83,6 @@ double =
     Side "double"
 
 
-src : String -> Property { a | src : Supported }
+src : String -> Property { provides | src : Supported }
 src =
-    Properties.string "src"
+    Values.string >> property "src"
