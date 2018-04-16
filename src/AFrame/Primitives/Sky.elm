@@ -1,9 +1,9 @@
-module AFrame.Primitives.Cylinder
+module AFrame.Primitives.Sky
     exposing
-        ( cylinder
+        ( sky
         , radius
-        , height
         , src
+        , thetaLength
         )
 
 import AFrame.Core
@@ -15,30 +15,26 @@ import AFrame.Core
         , Attribute
         , node
         , toAttribute
+        , toAttributeWithName
         )
 import AFrame.Components.Geometry as Geometry
 import AFrame.Components.Material as Material
 
 
-cylinder :
+sky :
     List
         (NodeAttribute
             { component : Supported
-            , height : Supported
             , materialSrc : Supported
             , radius : Supported
+            , thetaLength : Supported
             }
             msg
         )
     -> List (ChildNode { entity : Supported } msg)
     -> Node { provides | entity : Supported } msg
-cylinder =
-    node "a-cylinder"
-
-
-height : number -> Attribute { provides | height : Supported } msg
-height =
-    Geometry.height >> toAttribute
+sky =
+    node "a-sky"
 
 
 radius : number -> Attribute { provides | radius : Supported } msg
@@ -56,3 +52,8 @@ src :
     -> Attribute { provides | materialSrc : Supported } msg
 src =
     Material.src >> toAttribute
+
+
+thetaLength : number -> Attribute { provides | thetaLength : Supported } msg
+thetaLength =
+    Geometry.thetaLength >> toAttributeWithName "theta-length"

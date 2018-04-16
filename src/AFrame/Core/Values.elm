@@ -9,6 +9,8 @@ module AFrame.Core.Values
         , colorToString
         , id
         , idSelector
+        , Image
+        , image
         , imageId
         , imageIdSelector
         , imageUrl
@@ -146,6 +148,23 @@ idSelector :
     -> Value { provides | selector : Supported }
 idSelector =
     mapValue (String.append "#")
+
+
+type alias Image providesId providesUrl providesSelector =
+    { id : Value { providesId | imageId : Supported }
+    , url : Value { providesUrl | imageUrl : Supported }
+    , selector : Value { providesSelector | imageSelector : Supported }
+    }
+
+
+image :
+    { id : String, url : String }
+    -> Image providesId providesUrl providesSelector
+image { id, url } =
+    { id = value id
+    , url = value url
+    , selector = value ("#" ++ id)
+    }
 
 
 imageId : String -> Value { provides | imageId : Supported }

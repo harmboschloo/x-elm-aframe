@@ -15,6 +15,7 @@ module AFrame.Core
         , property
         , valueProperty
         , toAttribute
+        , toAttributeWithName
         , value
         , mapValue
         )
@@ -110,6 +111,11 @@ valueProperty name (Value value) =
 
 toAttribute : Property provides -> Attribute provides msg
 toAttribute (Property name value) =
+    attribute name value
+
+
+toAttributeWithName : String -> Property provides -> Attribute provides msg
+toAttributeWithName name (Property _ value) =
     attribute name value
 
 
