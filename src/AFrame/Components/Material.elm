@@ -88,10 +88,10 @@ double =
 
 src :
     Value
-        { imageId : Supported
-        , imageUrl : Supported
-        , videoId : Supported
+        { imageUrl : Supported
+        , imageSelector : Supported
         , videoUrl : Supported
+        , videoSelector : Supported
         }
     -> Property { provides | materialSrc : Supported }
 src =

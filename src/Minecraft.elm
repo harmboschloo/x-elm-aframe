@@ -5,7 +5,7 @@ import AFrame.Core exposing (Supported, Value, toHtml)
 import AFrame.Core.Scene exposing (scene)
 import AFrame.Core.Assets exposing (assets)
 import AFrame.Core.Image as Image exposing (image)
-import AFrame.Core.Values exposing (imageId, imageUrl)
+import AFrame.Core.Values exposing (imageId, imageIdSelector, imageUrl)
 import AFrame.Primitives.Cylinder as Cylinder exposing (cylinder)
 
 
@@ -30,7 +30,7 @@ view =
                     ]
                 ]
             , cylinder
-                [ Cylinder.src groundTextureId -- FIXME
+                [ Cylinder.src (imageIdSelector groundTextureId)
                 , Cylinder.radius 32
                 , Cylinder.height 0.1
                 ]

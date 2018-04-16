@@ -15,8 +15,8 @@ module AFrame.Core
         , property
         , valueProperty
         , toAttribute
-        , toAttributeOf
         , value
+        , mapValue
         )
 
 import Html
@@ -59,23 +59,23 @@ node name attributes children =
             (List.map toHtml children)
 
 
-toHtmlAttribute : Attribute a msg -> Html.Attribute msg
-toHtmlAttribute (Attribute attribute) =
-    attribute
-
-
 toHtml : Node a msg -> Html.Html msg
 toHtml (Node html) =
     html
 
 
+toHtmlAttribute : Attribute a msg -> Html.Attribute msg
+toHtmlAttribute (Attribute name value) =
+    Html.Attributes.attribute name value
+
+
 type Attribute provides msg
-    = Attribute (Html.Attribute msg)
+    = Attribute String String
 
 
-attribute : String -> String -> Attribute providesB msg
+attribute : String -> String -> Attribute provides msg
 attribute name value =
-    Attribute (Html.Attributes.attribute name value)
+    Attribute name value
 
 
 valueAttribute : String -> Value providesA -> Attribute providesB msg
@@ -113,11 +113,6 @@ toAttribute (Property name value) =
     attribute name value
 
 
-toAttributeOf : String -> Property providesA -> Attribute providesB msg
-toAttributeOf name (Property _ value) =
-    attribute name value
-
-
 type Value provides
     = Value String
 
@@ -125,3 +120,8 @@ type Value provides
 value : String -> Value provides
 value =
     Value
+
+
+mapValue : (String -> String) -> Value a -> Value b
+mapValue mapper (Value value) =
+    Value (mapper value)

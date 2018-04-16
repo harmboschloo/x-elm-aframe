@@ -43,10 +43,10 @@ height =
 
 src :
     AFrame.Core.Value
-        { imageId : Supported
-        , imageUrl : Supported
-        , videoId : Supported
+        { imageUrl : Supported
+        , imageSelector : Supported
         , videoUrl : Supported
+        , videoSelector : Supported
         }
     -> Attribute { provides | materialSrc : Supported } msg
 src =

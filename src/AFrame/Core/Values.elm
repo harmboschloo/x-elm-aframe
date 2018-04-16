@@ -1,27 +1,38 @@
 module AFrame.Core.Values
     exposing
         ( audioId
+        , audioIdSelector
         , audioUrl
         , boolean
         , booleanToString
         , color
         , colorToString
         , id
+        , idSelector
         , imageId
+        , imageIdSelector
         , imageUrl
         , int
         , number
         , videoId
+        , videoIdSelector
         , videoUrl
         )
 
 import Color exposing (Color)
-import AFrame.Core exposing (Supported, Value, value)
+import AFrame.Core exposing (Supported, Value, value, mapValue)
 
 
 audioId : String -> Value { provides | audioId : Supported }
 audioId =
     value
+
+
+audioIdSelector :
+    Value { audioId : Supported }
+    -> Value { provides | audioSelector : Supported }
+audioIdSelector =
+    mapValue (String.append "#")
 
 
 audioUrl : String -> Value { provides | audioUrl : Supported }
@@ -130,9 +141,23 @@ id =
     value
 
 
+idSelector :
+    Value { id : Supported }
+    -> Value { provides | selector : Supported }
+idSelector =
+    mapValue (String.append "#")
+
+
 imageId : String -> Value { provides | imageId : Supported }
 imageId =
     value
+
+
+imageIdSelector :
+    Value { imageId : Supported }
+    -> Value { provides | imageSelector : Supported }
+imageIdSelector =
+    mapValue (String.append "#")
 
 
 imageUrl : String -> Value { provides | imageUrl : Supported }
@@ -158,6 +183,13 @@ string =
 videoId : String -> Value { provides | videoId : Supported }
 videoId =
     value
+
+
+videoIdSelector :
+    Value { videoId : Supported }
+    -> Value { provides | videoSelector : Supported }
+videoIdSelector =
+    mapValue (String.append "#")
 
 
 videoUrl : String -> Value { provides | videoUrl : Supported }
