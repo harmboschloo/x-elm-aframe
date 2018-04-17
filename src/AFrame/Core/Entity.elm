@@ -5,6 +5,7 @@ module AFrame.Core.Entity
         , entity
         , primitive
         , component
+        , singleComponent
         , id
         , mixin
         )
@@ -58,6 +59,16 @@ component name properties =
     properties
         |> List.map Property.toString
         |> String.join ";"
+        |> attribute name
+
+
+singleComponent :
+    String
+    -> Value accepts
+    -> Attribute { provides | component : Supported } msg
+singleComponent name value =
+    value
+        |> Value.toString
         |> attribute name
 
 

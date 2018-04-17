@@ -11,6 +11,8 @@ module AFrame.Core.Value
         , int
         , number
         , string
+        , vec3
+        , vec3ToString
         )
 
 import Color exposing (Color)
@@ -145,3 +147,15 @@ number =
 string : String -> Value { provides | string : Supported }
 string =
     value
+
+
+vec3 : number -> number -> number -> Value { provides | vec3 : Supported }
+vec3 x y z =
+    vec3ToString x y z |> value
+
+
+vec3ToString : number -> number -> number -> String
+vec3ToString x y z =
+    [ x, y, z ]
+        |> List.map Basics.toString
+        |> String.join " "
