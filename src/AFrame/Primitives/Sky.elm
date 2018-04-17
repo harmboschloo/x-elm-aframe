@@ -6,35 +6,27 @@ module AFrame.Primitives.Sky
         , thetaLength
         )
 
-import AFrame.Core
-    exposing
-        ( Supported
-        , Node
-        , NodeAttribute
-        , ChildNode
-        , Attribute
-        , node
-        , toAttribute
-        , toAttributeWithName
-        )
+import AFrame.Core exposing (Supported, Node, Attribute)
+import AFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
+import AFrame.Core.Property exposing (toAttribute, toAttributeWithName)
+import AFrame.Core.Value exposing (Value)
 import AFrame.Components.Geometry as Geometry
 import AFrame.Components.Material as Material
 
 
 sky :
     List
-        (NodeAttribute
-            { component : Supported
-            , materialSrc : Supported
+        (EntityAttribute
+            { materialSrc : Supported
             , radius : Supported
             , thetaLength : Supported
             }
             msg
         )
-    -> List (ChildNode { entity : Supported } msg)
+    -> List (EntityNode msg)
     -> Node { provides | entity : Supported } msg
 sky =
-    node "a-sky"
+    primitive "a-sky"
 
 
 radius : number -> Attribute { provides | radius : Supported } msg
@@ -43,7 +35,7 @@ radius =
 
 
 src :
-    AFrame.Core.Value
+    Value
         { imageUrl : Supported
         , imageSelector : Supported
         , videoUrl : Supported

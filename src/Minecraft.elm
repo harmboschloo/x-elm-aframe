@@ -1,10 +1,10 @@
 module Minecraft exposing (view)
 
-import AFrame.Core exposing (Supported, Node, Value, toHtml)
+import AFrame.Core exposing (Supported, Node, toHtml)
 import AFrame.Core.Assets as Assets
 import AFrame.Core.Image as Image
 import AFrame.Core.Scene as Scene
-import AFrame.Core.Values exposing (Image, image)
+import AFrame.Core.Image.Value exposing (Image, image)
 import AFrame.Primitives.Cylinder as Cylinder
 import AFrame.Primitives.Sky as Sky
 import Html exposing (Html)

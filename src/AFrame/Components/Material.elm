@@ -11,17 +11,10 @@ module AFrame.Components.Material
         , src
         )
 
-import AFrame.Core
-    exposing
-        ( Supported
-        , Attribute
-        , Property
-        , Value
-        , component
-        , property
-        , valueProperty
-        , value
-        )
+import AFrame.Core exposing (Supported, Attribute)
+import AFrame.Core.Entity exposing (component)
+import AFrame.Core.Property exposing (Property, property)
+import AFrame.Core.Value as Value exposing (Value, value)
 
 
 type Shader accepts
@@ -68,7 +61,7 @@ side :
         }
     -> Property { provides | side : Supported }
 side =
-    valueProperty "side"
+    Value.toString >> property "side"
 
 
 front : Value { provides | front : Supported }
@@ -95,4 +88,4 @@ src :
         }
     -> Property { provides | materialSrc : Supported }
 src =
-    valueProperty "src"
+    Value.toString >> property "src"

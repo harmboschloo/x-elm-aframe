@@ -6,24 +6,16 @@ module AFrame.Core.Image
         , src
         )
 
-import AFrame.Core
-    exposing
-        ( Supported
-        , Node
-        , NodeAttribute
-        , ChildNode
-        , Attribute
-        , Value
-        , node
-        , valueAttribute
-        )
-import AFrame.Core.Values exposing (Image)
+import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import AFrame.Core.Value as Value exposing (Value)
+import AFrame.Core.Image.Value exposing (Image)
 
 
 image :
     List
-        (NodeAttribute
-            { imageId : Supported
+        (Attribute
+            { any : Supported
+            , imageId : Supported
             , imageSrc : Supported
             }
             msg
@@ -42,11 +34,11 @@ id :
     Value { imageId : Supported }
     -> Attribute { provides | imageId : Supported } msg
 id =
-    valueAttribute "id"
+    Value.toString >> attribute "id"
 
 
 src :
     Value { imageUrl : Supported }
     -> Attribute { provides | imageSrc : Supported } msg
 src =
-    valueAttribute "src"
+    Value.toString >> attribute "src"

@@ -6,34 +6,27 @@ module AFrame.Primitives.Cylinder
         , src
         )
 
-import AFrame.Core
-    exposing
-        ( Supported
-        , Node
-        , NodeAttribute
-        , ChildNode
-        , Attribute
-        , node
-        , toAttribute
-        )
+import AFrame.Core exposing (Supported, Node, Attribute)
+import AFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
+import AFrame.Core.Property exposing (toAttribute)
+import AFrame.Core.Value exposing (Value)
 import AFrame.Components.Geometry as Geometry
 import AFrame.Components.Material as Material
 
 
 cylinder :
     List
-        (NodeAttribute
-            { component : Supported
-            , height : Supported
+        (EntityAttribute
+            { height : Supported
             , materialSrc : Supported
             , radius : Supported
             }
             msg
         )
-    -> List (ChildNode { entity : Supported } msg)
+    -> List (EntityNode msg)
     -> Node { provides | entity : Supported } msg
 cylinder =
-    node "a-cylinder"
+    primitive "a-cylinder"
 
 
 height : number -> Attribute { provides | height : Supported } msg
@@ -47,7 +40,7 @@ radius =
 
 
 src :
-    AFrame.Core.Value
+    Value
         { imageUrl : Supported
         , imageSelector : Supported
         , videoUrl : Supported

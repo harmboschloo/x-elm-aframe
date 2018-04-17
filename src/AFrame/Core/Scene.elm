@@ -3,15 +3,24 @@ module AFrame.Core.Scene
         ( scene
         )
 
-import AFrame.Core exposing (Supported, Node, NodeAttribute, ChildNode, node)
+import AFrame.Core exposing (Supported, Node, Attribute, node)
 
 
 scene :
-    List (NodeAttribute { component : Supported } msg)
+    List
+        (Attribute
+            { any : Supported
+            , component : Supported
+            , id : Supported
+            , mixin : Supported
+            }
+            msg
+        )
     ->
         List
-            (ChildNode
-                { assets : Supported
+            (Node
+                { any : Supported
+                , assets : Supported
                 , entity : Supported
                 }
                 msg

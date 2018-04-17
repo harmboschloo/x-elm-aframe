@@ -3,15 +3,16 @@ module AFrame.Core.Assets
         ( assets
         )
 
-import AFrame.Core exposing (Supported, Node, NodeAttribute, ChildNode, node)
+import AFrame.Core exposing (Supported, Node, Attribute, node)
 
 
 assets :
-    List (NodeAttribute {} msg)
+    List (Attribute { any : Supported } msg)
     ->
         List
-            (ChildNode
-                { assetItem : Supported
+            (Node
+                { any : Supported
+                , assetItem : Supported
                 , image : Supported
                 , audio : Supported
                 , video : Supported

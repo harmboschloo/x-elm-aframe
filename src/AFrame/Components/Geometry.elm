@@ -18,15 +18,10 @@ module AFrame.Components.Geometry
         , thetaLength
         )
 
-import AFrame.Core
-    exposing
-        ( Supported
-        , Attribute
-        , Property
-        , component
-        , property
-        )
-import AFrame.Core.Values exposing (booleanToString)
+import AFrame.Core exposing (Supported, Attribute)
+import AFrame.Core.Entity exposing (component)
+import AFrame.Core.Property exposing (Property, property)
+import AFrame.Core.Value exposing (booleanToString)
 
 
 type Primitive accepts

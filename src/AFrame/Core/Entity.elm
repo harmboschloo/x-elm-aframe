@@ -1,14 +1,73 @@
 module AFrame.Core.Entity
     exposing
-        ( entity
+        ( EntityAttribute
+        , EntityNode
+        , entity
+        , primitive
+        , component
+        , id
+        , mixin
         )
 
-import AFrame.Core exposing (Supported, Node, NodeAttribute, ChildNode, node)
+import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import AFrame.Core.Property as Property exposing (Property)
+import AFrame.Core.Value as Value exposing (Value)
+
+
+type alias EntityAttribute accepts msg =
+    Attribute
+        { accepts
+            | any : Supported
+            , component : Supported
+            , id : Supported
+            , mixin : Supported
+        }
+        msg
+
+
+type alias EntityNode msg =
+    Node
+        { any : Supported
+        , entity : Supported
+        }
+        msg
 
 
 entity :
-    List (NodeAttribute { component : Supported } msg)
-    -> List (ChildNode { entity : Supported } msg)
+    List (EntityAttribute {} msg)
+    -> List (EntityNode msg)
     -> Node { provides | entity : Supported } msg
 entity =
     node "a-entity"
+
+
+primitive :
+    String
+    -> List (EntityAttribute accepts msg)
+    -> List (EntityNode msg)
+    -> Node { provides | entity : Supported } msg
+primitive =
+    node
+
+
+component :
+    String
+    -> List (Property accepts)
+    -> Attribute { provides | component : Supported } msg
+component name properties =
+    properties
+        |> List.map Property.toString
+        |> String.join ";"
+        |> attribute name
+
+
+id : Value { id : Supported } -> Attribute { provides | id : Supported } msg
+id =
+    Value.toString >> attribute "id"
+
+
+mixin :
+    List (Value { mixinId : Supported })
+    -> Attribute { provides | mixin : Supported } msg
+mixin =
+    List.map Value.toString >> String.join " " >> attribute "mixin"
