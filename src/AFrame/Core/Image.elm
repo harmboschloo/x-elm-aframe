@@ -8,7 +8,6 @@ module AFrame.Core.Image
 
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
 import AFrame.Core.Value as Value exposing (Value)
-import AFrame.Core.Image.Value exposing (Image)
 
 
 image :
@@ -25,7 +24,12 @@ image attributes =
     node "img" attributes []
 
 
-imageOf : Image {} {} {} -> Node { provides | image : Supported } msg
+imageOf :
+    { a
+        | id : Value { imageId : Supported }
+        , url : Value { imageUrl : Supported }
+    }
+    -> Node { provides | image : Supported } msg
 imageOf data =
     image [ id data.id, src data.url ]
 
