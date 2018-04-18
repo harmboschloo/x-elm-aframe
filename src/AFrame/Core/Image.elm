@@ -1,11 +1,15 @@
 module AFrame.Core.Image
     exposing
-        ( image
+        ( Props
+        , image
         , imageOf
         , crossOrigin
         , id
         , src
         , anonymous
+        , idValue
+        , idSelector
+        , props
         )
 
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
@@ -70,6 +74,35 @@ src =
 -- Values
 
 
+type alias Props providesId providesUrl providesSelector =
+    { id : Value { providesId | imageId : Supported }
+    , url : Value { providesUrl | imageUrl : Supported }
+    , selector : Value { providesSelector | imageSelector : Supported }
+    }
+
+
 anonymous : Value { provides | anonymous : Supported }
 anonymous =
     value "anonymous"
+
+
+idValue : String -> Value { provides | imageId : Supported }
+idValue =
+    value
+
+
+idSelector :
+    Value { imageId : Supported }
+    -> Value { provides | imageSelector : Supported }
+idSelector =
+    Value.map (String.append "#")
+
+
+props :
+    { id : String, url : String }
+    -> Props providesId providesUrl providesSelector
+props { id, url } =
+    { id = value id
+    , url = value url
+    , selector = value ("#" ++ id)
+    }

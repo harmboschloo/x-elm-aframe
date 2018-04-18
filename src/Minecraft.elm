@@ -5,7 +5,6 @@ import AFrame.Core.Animation as Animation
 import AFrame.Core.Assets as Assets
 import AFrame.Core.Entity as Entity
 import AFrame.Core.Image as Image
-import AFrame.Core.Image.Value exposing (Image, image)
 import AFrame.Core.Mixin as Mixin
 import AFrame.Core.Scene as Scene
 import AFrame.Core.Value exposing (Value, number, vec3)
@@ -19,17 +18,17 @@ import KevinNgo.Components.Snap as Snap
 import Minecraft.Components.RandomColor as RandomColor
 
 
-groundTexture : Image providesId providesUrl providesSelector
+groundTexture : Image.Props providesId providesUrl providesSelector
 groundTexture =
-    image
+    Image.props
         { id = "groundTexture"
         , url = "https://cdn.aframe.io/a-painter/images/floor.jpg"
         }
 
 
-skyTexture : Image providesId providesUrl providesSelector
+skyTexture : Image.Props providesId providesUrl providesSelector
 skyTexture =
-    image
+    Image.props
         { id = "skyTexture"
         , url = "https://cdn.aframe.io/a-painter/images/sky.jpg"
         }

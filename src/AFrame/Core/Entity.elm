@@ -8,11 +8,16 @@ module AFrame.Core.Entity
         , componentSingle
         , id
         , mixin
+        , idValue
+        , idSelector
         )
 
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
 import AFrame.Core.Property as Property exposing (Property)
 import AFrame.Core.Value as Value exposing (Value)
+
+
+-- Node
 
 
 type alias EntityAttribute accepts msg =
@@ -52,6 +57,10 @@ primitive =
     node
 
 
+
+-- Attributes
+
+
 component :
     String
     -> List (Property accepts)
@@ -81,3 +90,19 @@ mixin :
     -> Attribute { provides | mixin : Supported } msg
 mixin =
     List.map Value.toString >> String.join " " >> attribute "mixin"
+
+
+
+-- Values
+
+
+idValue : String -> Value { provides | id : Supported }
+idValue =
+    Value.value
+
+
+idSelector :
+    Value { id : Supported }
+    -> Value { provides | selector : Supported }
+idSelector =
+    Value.map (String.append "#")
