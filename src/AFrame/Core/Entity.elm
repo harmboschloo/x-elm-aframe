@@ -5,7 +5,7 @@ module AFrame.Core.Entity
         , entity
         , primitive
         , component
-        , singleComponent
+        , componentSingle
         , id
         , mixin
         )
@@ -29,6 +29,7 @@ type alias EntityAttribute accepts msg =
 type alias EntityNode msg =
     Node
         { any : Supported
+        , animation : Supported
         , entity : Supported
         }
         msg
@@ -62,14 +63,12 @@ component name properties =
         |> attribute name
 
 
-singleComponent :
+componentSingle :
     String
-    -> Value accepts
+    -> String
     -> Attribute { provides | component : Supported } msg
-singleComponent name value =
-    value
-        |> Value.toString
-        |> attribute name
+componentSingle =
+    attribute
 
 
 id : Value { id : Supported } -> Attribute { provides | id : Supported } msg

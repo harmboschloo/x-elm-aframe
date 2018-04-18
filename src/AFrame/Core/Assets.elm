@@ -13,8 +13,9 @@ assets :
             (Node
                 { any : Supported
                 , assetItem : Supported
-                , image : Supported
                 , audio : Supported
+                , image : Supported
+                , mixin : Supported
                 , video : Supported
                 }
                 msg
