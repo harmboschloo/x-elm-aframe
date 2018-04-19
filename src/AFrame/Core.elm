@@ -8,6 +8,9 @@ module AFrame.Core
         , attribute
         )
 
+{-| see <https://aframe.io/docs/0.8.0/introduction/>
+-}
+
 import Html
 import Html.Attributes
 

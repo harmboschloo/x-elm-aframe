@@ -18,6 +18,9 @@ module AFrame.Components.Geometry
         , thetaLength
         )
 
+{-| see <https://aframe.io/docs/0.8.0/components/geometry.html>
+-}
+
 import AFrame.Core exposing (Supported, Attribute)
 import AFrame.Core.Entity exposing (component)
 import AFrame.Core.Property exposing (Property, property)

@@ -3,6 +3,9 @@ module AFrame.Core.Assets
         ( assets
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/asset-management-system.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute, node)
 
 

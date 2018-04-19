@@ -4,6 +4,9 @@ module AFrame.Core.Mixin
         , id
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/mixins.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
 import AFrame.Core.Value as Value exposing (Value, value)
 

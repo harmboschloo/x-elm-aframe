@@ -6,6 +6,9 @@ module AFrame.Primitives.Sky
         , thetaLength
         )
 
+{-| see <https://aframe.io/docs/0.8.0/primitives/a-sky.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute)
 import AFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
 import AFrame.Core.Property exposing (toAttribute, toAttributeWithName)

@@ -7,6 +7,9 @@ module AFrame.Core.Property
         , toAttributeWithName
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/component.html>
+-}
+
 import AFrame.Core exposing (Attribute, attribute)
 
 

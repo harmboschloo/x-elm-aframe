@@ -12,6 +12,9 @@ module AFrame.Core.Image
         , props
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/asset-management-system.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
 import AFrame.Core.Value as Value exposing (Value, value)
 

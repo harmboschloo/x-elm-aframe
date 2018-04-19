@@ -1,12 +1,12 @@
--- see https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js
-
-
-module KevinNgo.Components.Snap
+module KFrame.Components.Snap
     exposing
         ( snap
         , offset
         , spacing
         )
+
+{-| see <https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js>
+-}
 
 import AFrame.Core exposing (Supported, Attribute)
 import AFrame.Core.Entity exposing (component)

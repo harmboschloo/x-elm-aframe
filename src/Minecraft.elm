@@ -1,5 +1,8 @@
 module Minecraft exposing (view)
 
+{-| see <https://aframe.io/docs/0.8.0/guides/building-a-minecraft-demo.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute, toHtml)
 import AFrame.Core.Animation as Animation
 import AFrame.Core.Assets as Assets
@@ -14,7 +17,7 @@ import AFrame.Components.Position as Position
 import AFrame.Primitives.Cylinder as Cylinder
 import AFrame.Primitives.Sky as Sky
 import Html exposing (Html)
-import KevinNgo.Components.Snap as Snap
+import KFrame.Components.Snap as Snap
 import Minecraft.Components.RandomColor as RandomColor
 
 

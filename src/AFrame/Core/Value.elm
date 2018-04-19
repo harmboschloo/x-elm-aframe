@@ -15,6 +15,9 @@ module AFrame.Core.Value
         , vec3ToString
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/component.html#property-types>
+-}
+
 import Color exposing (Color)
 import AFrame.Core exposing (Supported)
 

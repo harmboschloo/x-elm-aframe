@@ -12,6 +12,9 @@ module AFrame.Core.Entity
         , idSelector
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/entity.html>
+-}
+
 import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
 import AFrame.Core.Property as Property exposing (Property)
 import AFrame.Core.Value as Value exposing (Value)

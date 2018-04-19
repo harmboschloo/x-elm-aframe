@@ -11,6 +11,9 @@ module AFrame.Components.Material
         , src
         )
 
+{-| see <https://aframe.io/docs/0.8.0/components/material.html>
+-}
+
 import AFrame.Core exposing (Supported, Attribute)
 import AFrame.Core.Entity exposing (component)
 import AFrame.Core.Property exposing (Property, property)

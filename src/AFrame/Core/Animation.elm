@@ -8,6 +8,9 @@ module AFrame.Core.Animation
         , indefinite
         )
 
+{-| see <https://aframe.io/docs/0.8.0/core/animations.html>
+-}
+
 import AFrame.Core as Core exposing (Supported, Node, Attribute, node)
 import AFrame.Core.Value as Value exposing (Value, value)
 
