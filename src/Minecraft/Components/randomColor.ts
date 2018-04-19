@@ -1,8 +1,7 @@
 AFRAME.registerComponent("random-color", {
   dependencies: ["material"],
 
-  init: function() {
-    // @ts-ignore
+  init: function(this: AFrame.Component) {
     this.el.setAttribute("material", "color", randomColor());
   }
 });
