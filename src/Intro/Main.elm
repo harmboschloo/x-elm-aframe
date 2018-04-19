@@ -1,4 +1,4 @@
-module Demo exposing (main)
+module Intro.Main exposing (main)
 
 import Html exposing (node)
 import Html.Attributes exposing (attribute)
@@ -40,5 +40,3 @@ main =
             ]
             []
         ]
-
-

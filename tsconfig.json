@@ -6,5 +6,5 @@
     "strict": true,
     "sourceMap": false
   },
-  "files ": ["src/index.ts"]
+  "files ": ["src/Minecraft/index.ts"]
 }

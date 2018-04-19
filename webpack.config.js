@@ -9,12 +9,12 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      main: "./src/index.ts"
+      minecraft: "./src/Minecraft/index.ts"
     },
 
     output: {
-      filename: "[name].js",
-      path: toPath(".")
+      filename: "[name]/index.js",
+      path: toPath("./build")
     },
 
     resolve: {
@@ -35,7 +35,12 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           loader: "file-loader",
           options: {
-            name: "[name].[ext]"
+            name: file =>
+              file
+                .split(/[\\/]/)
+                .slice(-2)
+                .join("/")
+                .toLowerCase()
           }
         },
 
