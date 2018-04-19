@@ -1,5 +1,8 @@
 module Intro.Main exposing (main)
 
+{-| see <https://aframe.io/docs/0.8.0/introduction/>
+-}
+
 import Html exposing (node)
 import Html.Attributes exposing (attribute)
 

@@ -1,5 +1,5 @@
 import "./index.html";
 import "./Components/randomColor";
-import * as Elm from "./Main";
+import { Minecraft } from "./Main";
 
-Elm.Minecraft.Main.fullscreen();
+Minecraft.Main.fullscreen();

@@ -9,6 +9,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
+      intro: "./src/Intro/index.ts",
       minecraft: "./src/Minecraft/index.ts"
     },
 
