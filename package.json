@@ -1,13 +1,14 @@
 {
-  "name": "x-aframe",
+  "name": "x-elm-aframe",
   "version": "0.0.0",
-  "description": "",
+  "summary": "A-Frame/Elm explorations",
+  "repository": "https://github.com/harmboschloo/x-elm-aframe.git",
+  "author": "Harm Boschloo",
+  "license": "BSD-3-Clause",
   "scripts": {
     "build": "webpack -p",
     "start": "webpack-dev-server -d"
   },
-  "author": "Harm Boschloo",
-  "license": "BSD-3-Clause",
   "dependencies": {
     "aframe": "^0.8.1"
   },
