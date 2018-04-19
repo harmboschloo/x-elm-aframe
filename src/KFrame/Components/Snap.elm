@@ -5,7 +5,7 @@ module KFrame.Components.Snap
         , spacing
         )
 
-{-| see <https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js>
+{-| see <https://github.com/ngokevin/kframe/blob/master/scenes/aincraft/components/snap.js>
 -}
 
 import AFrame.Core exposing (Supported, Attribute)
