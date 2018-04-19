@@ -5,6 +5,8 @@ const toPath = relativePath => path.resolve(__dirname, relativePath);
 module.exports = (env, argv) => {
   const isDev = argv.mode === "development";
 
+  console.info(isDev ? "development build" : "production build");
+
   return {
     entry: {
       main: "./src/index.ts"
@@ -12,7 +14,7 @@ module.exports = (env, argv) => {
 
     output: {
       filename: "[name].js",
-      path: toPath("./build")
+      path: toPath(".")
     },
 
     resolve: {
