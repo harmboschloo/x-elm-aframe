@@ -1,3 +1,6 @@
+-- see https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js
+
+
 module KevinNgo.Components.Snap
     exposing
         ( snap
