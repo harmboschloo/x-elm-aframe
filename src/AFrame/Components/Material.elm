@@ -1,94 +1,52 @@
-module XAFrame.Components.Material
+module AFrame.Components.Material
     exposing
-        ( Shader
-        , MaterialProperty
+        ( Material
+        , Shader
+        , Side(Front, Back, Double)
         , material
-        , standard
+        , shader
         , side
-        , front
-        , back
-        , double
-        , src
         )
 
 {-| <https://aframe.io/docs/0.8.0/components/material.html>
 -}
 
-import XAFrame.Core exposing (Supported, Attribute)
-import XAFrame.Core.Entity exposing (component)
-import XAFrame.Core.Property exposing (Property, property)
-import XAFrame.Core.Value as Value exposing (Value, value)
+import AFrame exposing (Attribute, Property, attribute, property, properties2)
 
 
-type Shader accepts
-    = Shader String
+type Material
+    = Material
 
 
-type alias MaterialProperty accepts =
-    Property
-        { accepts
-            | side : Supported
-            , materialSrc : Supported
-        }
+type Shader a
+    = Shader (List (Property a))
 
 
-material :
-    Shader accepts
-    -> List (MaterialProperty accepts)
-    -> Attribute { provides | component : Supported } msg
-material (Shader shader) properties =
-    component "material" (property "shader" shader :: properties)
+material : Shader a -> List (Property Material) -> Attribute msg
+material (Shader shaderProperties) =
+    properties2 shaderProperties >> attribute "material"
 
 
-
--- SHADERS
-
-
-standard :
-    Shader
-        { src : Supported
-        }
-standard =
-    Shader "standard"
+shader : String -> List (Property a) -> Shader a
+shader name shaderProperties =
+    Shader (property "shader" name :: shaderProperties)
 
 
-
--- PROPERTIES
-
-
-side :
-    Value
-        { front : Supported
-        , back : Supported
-        , double : Supported
-        }
-    -> Property { provides | side : Supported }
-side =
-    Value.toString >> property "side"
+type Side
+    = Front
+    | Back
+    | Double
 
 
-front : Value { provides | front : Supported }
-front =
-    value "front"
+side : Side -> Property a
+side value =
+    property "side" <|
+        case value of
+            Front ->
+                "front"
 
+            Back ->
+                "back"
 
-back : Value { provides | back : Supported }
-back =
-    value "back"
-
-
-double : Value { provides | double : Supported }
-double =
-    value "double"
-
-
-src :
-    Value
-        { imageUrl : Supported
-        , imageSelector : Supported
-        , videoUrl : Supported
-        , videoSelector : Supported
-        }
-    -> Property { provides | materialSrc : Supported }
-src =
-    Value.toString >> property "src"
+            Double ->
+                "double"

@@ -1,137 +1,30 @@
-module XAFrame.Components.Geometry
+module AFrame.Components.Geometry
     exposing
-        ( Primitive
-        , GeometryProperty
+        ( Geometry
+        , Primitive
         , geometry
-        , box
-        , cylinder
-        , width
-        , height
-        , depth
-        , radius
-        , segmentsWidth
-        , segmentsHeight
-        , segmentsDepth
-        , segmentsRadial
-        , openEnded
-        , thetaStart
-        , thetaLength
+        , primitive
         )
 
 {-| <https://aframe.io/docs/0.8.0/components/geometry.html>
 -}
 
-import XAFrame.Core exposing (Supported, Attribute)
-import XAFrame.Core.Entity exposing (component)
-import XAFrame.Core.Property exposing (Property, property)
-import XAFrame.Core.Value exposing (booleanToString)
+import AFrame exposing (Attribute, Property, attribute, property, properties2)
 
 
-type Primitive accepts
-    = Primitive String
+type Geometry
+    = Geometry
 
 
-type alias GeometryProperty accepts =
-    Property
-        { accepts
-            | buffer : Supported
-            , skipCache : Supported
-        }
+type Primitive a
+    = Primitive (List (Property a))
 
 
-geometry :
-    Primitive accepts
-    -> List (GeometryProperty accepts)
-    -> Attribute { provides | component : Supported } msg
-geometry (Primitive primitive) properties =
-    component "geometry" (property "primitive" primitive :: properties)
+geometry : Primitive a -> List (Property Geometry) -> Attribute msg
+geometry (Primitive primitiveProperties) =
+    properties2 primitiveProperties >> attribute "geometry"
 
 
-
--- PRIMITIVES
-
-
-box :
-    Primitive
-        { width : Supported
-        , height : Supported
-        , depth : Supported
-        , segmentsWidth : Supported
-        , segmentsHeight : Supported
-        , segmentsDepth : Supported
-        }
-box =
-    Primitive "box"
-
-
-cylinder :
-    Primitive
-        { radius : Supported
-        , height : Supported
-        , segmentsRadial : Supported
-        , segmentsHeight : Supported
-        , openEnded : Supported
-        , thetaStart : Supported
-        , thetaLength : Supported
-        }
-cylinder =
-    Primitive "cylinder"
-
-
-
--- PROPERTIES
-
-
-width : number -> Property { provides | width : Supported }
-width =
-    toString >> property "width"
-
-
-height : number -> Property { provides | height : Supported }
-height =
-    toString >> property "height"
-
-
-depth : number -> Property { provides | depth : Supported }
-depth =
-    toString >> property "depth"
-
-
-radius : number -> Property { provides | radius : Supported }
-radius =
-    toString >> property "radius"
-
-
-segmentsWidth : Int -> Property { provides | segmentsWidth : Supported }
-segmentsWidth =
-    toString >> property "segmentsWidth"
-
-
-segmentsHeight : Int -> Property { provides | segmentsHeight : Supported }
-segmentsHeight =
-    toString >> property "segmentsHeight"
-
-
-segmentsDepth : Int -> Property { provides | segmentsDepth : Supported }
-segmentsDepth =
-    toString >> property "segmentsDepth"
-
-
-segmentsRadial : Int -> Property { provides | segmentsRadial : Supported }
-segmentsRadial =
-    toString >> property "segmentsRadial"
-
-
-openEnded : Bool -> Property { provides | openEnded : Supported }
-openEnded =
-    booleanToString >> property "openEnded"
-
-
-thetaStart : number -> Property { provides | thetaStart : Supported }
-thetaStart =
-    toString >> property "thetaStart"
-
-
-thetaLength : number -> Property { provides | thetaLength : Supported }
-thetaLength =
-    toString >> property "thetaLength"
+primitive : String -> List (Property a) -> Primitive a
+primitive name primitiveProperties =
+    Primitive (property "primitive" name :: primitiveProperties)
