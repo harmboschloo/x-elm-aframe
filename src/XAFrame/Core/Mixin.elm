@@ -1,4 +1,4 @@
-module AFrame.Core.Mixin
+module XAFrame.Core.Mixin
     exposing
         ( mixin
         , id
@@ -7,8 +7,8 @@ module AFrame.Core.Mixin
 {-| see <https://aframe.io/docs/0.8.0/core/mixins.html>
 -}
 
-import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
-import AFrame.Core.Value as Value exposing (Value, value)
+import XAFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import XAFrame.Core.Value as Value exposing (Value, value)
 
 
 mixin :

@@ -1,4 +1,4 @@
-module AFrame.Core
+module XAFrame.Core
     exposing
         ( Supported
         , Node

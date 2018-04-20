@@ -4,20 +4,20 @@ module Minecraft.Main exposing (main)
 -}
 
 import Html exposing (Html)
-import AFrame.Core exposing (Supported, Node, Attribute, toHtml)
-import AFrame.Core.Animation as Animation
-import AFrame.Core.Assets as Assets
-import AFrame.Core.Entity as Entity
-import AFrame.Core.Image as Image
-import AFrame.Core.Mixin as Mixin
-import AFrame.Core.Scene as Scene
-import AFrame.Core.Value exposing (Value, number, vec3)
-import AFrame.Components.Geometry as Geometry
-import AFrame.Components.Material as Material
-import AFrame.Components.Position as Position
-import AFrame.Primitives.Cylinder as Cylinder
-import AFrame.Primitives.Sky as Sky
-import KFrame.Components.Snap as Snap
+import XAFrame.Core exposing (Supported, Node, Attribute, toHtml)
+import XAFrame.Core.Animation as Animation
+import XAFrame.Core.Assets as Assets
+import XAFrame.Core.Entity as Entity
+import XAFrame.Core.Image as Image
+import XAFrame.Core.Mixin as Mixin
+import XAFrame.Core.Scene as Scene
+import XAFrame.Core.Value exposing (Value, number, vec3)
+import XAFrame.Components.Geometry as Geometry
+import XAFrame.Components.Material as Material
+import XAFrame.Components.Position as Position
+import XAFrame.Primitives.Cylinder as Cylinder
+import XAFrame.Primitives.Sky as Sky
+import XKFrame.Components.Snap as Snap
 import Minecraft.Components.RandomColor as RandomColor
 
 

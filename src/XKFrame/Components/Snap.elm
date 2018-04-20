@@ -1,4 +1,4 @@
-module KFrame.Components.Snap
+module XKFrame.Components.Snap
     exposing
         ( snap
         , offset
@@ -8,10 +8,10 @@ module KFrame.Components.Snap
 {-| see <https://github.com/ngokevin/kframe/blob/master/scenes/aincraft/components/snap.js>
 -}
 
-import AFrame.Core exposing (Supported, Attribute)
-import AFrame.Core.Entity exposing (component)
-import AFrame.Core.Property exposing (Property, property)
-import AFrame.Core.Value as Value
+import XAFrame.Core exposing (Supported, Attribute)
+import XAFrame.Core.Entity exposing (component)
+import XAFrame.Core.Property exposing (Property, property)
+import XAFrame.Core.Value as Value
 
 
 snap :

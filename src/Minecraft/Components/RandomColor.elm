@@ -3,8 +3,8 @@ module Minecraft.Components.RandomColor
         ( randomColor
         )
 
-import AFrame.Core exposing (Supported, Attribute)
-import AFrame.Core.Entity exposing (component)
+import XAFrame.Core exposing (Supported, Attribute)
+import XAFrame.Core.Entity exposing (component)
 
 
 randomColor : Attribute { provides | component : Supported } msg

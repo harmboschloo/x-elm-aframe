@@ -1,4 +1,4 @@
-module AFrame.Core.Entity
+module XAFrame.Core.Entity
     exposing
         ( EntityAttribute
         , EntityNode
@@ -15,9 +15,9 @@ module AFrame.Core.Entity
 {-| see <https://aframe.io/docs/0.8.0/core/entity.html>
 -}
 
-import AFrame.Core exposing (Supported, Node, Attribute, node, attribute)
-import AFrame.Core.Property as Property exposing (Property)
-import AFrame.Core.Value as Value exposing (Value)
+import XAFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import XAFrame.Core.Property as Property exposing (Property)
+import XAFrame.Core.Value as Value exposing (Value)
 
 
 -- Node

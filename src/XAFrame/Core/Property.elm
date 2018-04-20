@@ -1,4 +1,4 @@
-module AFrame.Core.Property
+module XAFrame.Core.Property
     exposing
         ( Property
         , property
@@ -10,7 +10,7 @@ module AFrame.Core.Property
 {-| see <https://aframe.io/docs/0.8.0/core/component.html>
 -}
 
-import AFrame.Core exposing (Attribute, attribute)
+import XAFrame.Core exposing (Attribute, attribute)
 
 
 type Property supports

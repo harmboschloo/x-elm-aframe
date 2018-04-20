@@ -1,4 +1,4 @@
-module AFrame.Primitives.Sky
+module XAFrame.Primitives.Sky
     exposing
         ( sky
         , radius
@@ -9,12 +9,12 @@ module AFrame.Primitives.Sky
 {-| see <https://aframe.io/docs/0.8.0/primitives/a-sky.html>
 -}
 
-import AFrame.Core exposing (Supported, Node, Attribute)
-import AFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
-import AFrame.Core.Property exposing (toAttribute, toAttributeWithName)
-import AFrame.Core.Value exposing (Value)
-import AFrame.Components.Geometry as Geometry
-import AFrame.Components.Material as Material
+import XAFrame.Core exposing (Supported, Node, Attribute)
+import XAFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
+import XAFrame.Core.Property exposing (toAttribute, toAttributeWithName)
+import XAFrame.Core.Value exposing (Value)
+import XAFrame.Components.Geometry as Geometry
+import XAFrame.Components.Material as Material
 
 
 sky :

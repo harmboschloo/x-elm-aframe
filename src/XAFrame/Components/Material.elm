@@ -1,4 +1,4 @@
-module AFrame.Components.Material
+module XAFrame.Components.Material
     exposing
         ( Shader
         , MaterialProperty
@@ -14,10 +14,10 @@ module AFrame.Components.Material
 {-| see <https://aframe.io/docs/0.8.0/components/material.html>
 -}
 
-import AFrame.Core exposing (Supported, Attribute)
-import AFrame.Core.Entity exposing (component)
-import AFrame.Core.Property exposing (Property, property)
-import AFrame.Core.Value as Value exposing (Value, value)
+import XAFrame.Core exposing (Supported, Attribute)
+import XAFrame.Core.Entity exposing (component)
+import XAFrame.Core.Property exposing (Property, property)
+import XAFrame.Core.Value as Value exposing (Value, value)
 
 
 type Shader accepts

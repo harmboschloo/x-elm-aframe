@@ -1,4 +1,4 @@
-module AFrame.Components.Position
+module XAFrame.Components.Position
     exposing
         ( position
         )
@@ -6,9 +6,9 @@ module AFrame.Components.Position
 {-| see <https://aframe.io/docs/0.8.0/components/position.html>
 -}
 
-import AFrame.Core exposing (Supported, Attribute)
-import AFrame.Core.Entity exposing (componentSingle)
-import AFrame.Core.Value as Value
+import XAFrame.Core exposing (Supported, Attribute)
+import XAFrame.Core.Entity exposing (componentSingle)
+import XAFrame.Core.Value as Value
 
 
 position :

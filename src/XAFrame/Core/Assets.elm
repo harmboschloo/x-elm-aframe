@@ -1,4 +1,4 @@
-module AFrame.Core.Assets
+module XAFrame.Core.Assets
     exposing
         ( assets
         )
@@ -6,7 +6,7 @@ module AFrame.Core.Assets
 {-| see <https://aframe.io/docs/0.8.0/core/asset-management-system.html>
 -}
 
-import AFrame.Core exposing (Supported, Node, Attribute, node)
+import XAFrame.Core exposing (Supported, Node, Attribute, node)
 
 
 assets :

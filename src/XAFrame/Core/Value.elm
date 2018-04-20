@@ -1,4 +1,4 @@
-module AFrame.Core.Value
+module XAFrame.Core.Value
     exposing
         ( Value
         , value
@@ -19,7 +19,7 @@ module AFrame.Core.Value
 -}
 
 import Color exposing (Color)
-import AFrame.Core exposing (Supported)
+import XAFrame.Core exposing (Supported)
 
 
 type Value supports
