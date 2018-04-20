@@ -15,6 +15,7 @@ import AFrame.Components.Material.Standard as Standard exposing (standard)
 import AFrame.Components.Position exposing (position)
 import AFrame.Components.Rotation exposing (rotation)
 import AFrame.Components.Stats exposing (stats)
+import AFrame.Primitives.Box as Box exposing (box)
 import AFrame.Primitives.Cursor exposing (cursor)
 import AFrame.Primitives.Plane as Plane exposing (plane)
 
@@ -27,8 +28,20 @@ main =
             , lookControls []
             , position (Vec3 0 1.5 0)
             ]
-            [ cursor [] [] ]
-        , entity
+            [ cursor [] []
+            , -- paddle
+              entity [ position (Vec3 0 0 -3) ]
+                [ box
+                    [ Box.color Color.blue
+                    , Box.depth 3
+                    , Box.height 0.5
+                    , Box.width 0.25
+                    ]
+                    []
+                ]
+            ]
+        , -- ball
+          entity
             [ position (Vec3 0 1 -4)
             , material (standard [ Standard.color Color.green ]) []
             , geometry (sphere [ Sphere.radius 0.5 ]) []
