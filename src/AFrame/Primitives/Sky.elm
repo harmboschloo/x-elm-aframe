@@ -9,7 +9,7 @@ module XAFrame.Primitives.Sky
 {-| <https://aframe.io/docs/0.8.0/primitives/a-sky.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute)
+import XAFrame.Core exposing (Supported, Html, Attribute)
 import XAFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
 import XAFrame.Core.Property exposing (toAttribute, toAttributeWithName)
 import XAFrame.Core.Value exposing (Value)
@@ -27,7 +27,7 @@ sky :
             msg
         )
     -> List (EntityNode msg)
-    -> Node { provides | entity : Supported } msg
+    -> Html { provides | entity : Supported } msg
 sky =
     primitive "a-sky"
 

@@ -7,7 +7,7 @@ module AFrame.Core
         , entity
         )
 
-import AFrame exposing (Node, Attribute, node)
+import AFrame exposing (Html, Attribute, node)
 
 
 -- Property Types
@@ -41,13 +41,13 @@ vec3 { x, y, z } =
 
 {-| <https://aframe.io/docs/0.8.0/core/scene.html>
 -}
-scene : List (Attribute msg) -> List (Node msg) -> Node msg
+scene : List (Attribute msg) -> List (Html msg) -> Html msg
 scene =
     node "a-scene"
 
 
 {-| <https://aframe.io/docs/0.8.0/core/entity.html>
 -}
-entity : List (Attribute msg) -> List (Node msg) -> Node msg
+entity : List (Attribute msg) -> List (Html msg) -> Html msg
 entity =
     node "a-entity"

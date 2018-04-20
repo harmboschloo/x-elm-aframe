@@ -11,11 +11,11 @@ module XAFrame.Core.Animation
 {-| <https://aframe.io/docs/0.8.0/core/animations.html>
 -}
 
-import XAFrame.Core as Core exposing (Supported, Node, Attribute, node)
+import XAFrame.Core as Core exposing (Supported, Html, Attribute, node)
 import XAFrame.Core.Value as Value exposing (Value, value)
 
 
--- Node
+-- Html
 
 
 type Sub a
@@ -33,7 +33,7 @@ animation :
             }
             msg
         )
-    -> Node { provides | animation : Supported } msg
+    -> Html { provides | animation : Supported } msg
 animation attributes =
     node "a-animation" attributes []
 

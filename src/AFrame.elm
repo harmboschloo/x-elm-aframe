@@ -1,6 +1,6 @@
 module AFrame
     exposing
-        ( Node
+        ( Html
         , Attribute
         , Property
         , node
@@ -16,7 +16,7 @@ import Html
 import Html.Attributes
 
 
-type alias Node msg =
+type alias Html msg =
     Html.Html msg
 
 
@@ -28,7 +28,7 @@ type Property a
     = Property String String
 
 
-node : String -> List (Attribute msg) -> List (Node msg) -> Node msg
+node : String -> List (Attribute msg) -> List (Html msg) -> Html msg
 node =
     Html.node
 

@@ -6,14 +6,14 @@ module XAFrame.Core.Assets
 {-| <https://aframe.io/docs/0.8.0/core/asset-management-system.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute, node)
+import XAFrame.Core exposing (Supported, Html, Attribute, node)
 
 
 assets :
     List (Attribute { any : Supported } msg)
     ->
         List
-            (Node
+            (Html
                 { any : Supported
                 , assetItem : Supported
                 , audio : Supported
@@ -23,6 +23,6 @@ assets :
                 }
                 msg
             )
-    -> Node { provides | assets : Supported } msg
+    -> Html { provides | assets : Supported } msg
 assets =
     node "a-assets"

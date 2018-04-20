@@ -15,11 +15,11 @@ module XAFrame.Core.Image
 {-| <https://aframe.io/docs/0.8.0/core/asset-management-system.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import XAFrame.Core exposing (Supported, Html, Attribute, node, attribute)
 import XAFrame.Core.Value as Value exposing (Value, value)
 
 
--- Node
+-- Html
 
 
 type alias ImageAttributes =
@@ -32,7 +32,7 @@ type alias ImageAttributes =
 
 image :
     List (Attribute ImageAttributes msg)
-    -> Node { provides | image : Supported } msg
+    -> Html { provides | image : Supported } msg
 image attributes =
     node "img" attributes []
 
@@ -43,7 +43,7 @@ imageOf :
         , url : Value { imageUrl : Supported }
     }
     -> List (Attribute ImageAttributes msg)
-    -> Node { provides | image : Supported } msg
+    -> Html { provides | image : Supported } msg
 imageOf data attributes =
     image ([ id data.id, src data.url ] ++ attributes)
 

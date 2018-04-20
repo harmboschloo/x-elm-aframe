@@ -7,14 +7,14 @@ module XAFrame.Core.Mixin
 {-| <https://aframe.io/docs/0.8.0/core/mixins.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import XAFrame.Core exposing (Supported, Html, Attribute, node, attribute)
 import XAFrame.Core.Value as Value exposing (Value, value)
 
 
 mixin :
     Value { mixinId : Supported }
     -> List (Attribute { component : Supported } msg)
-    -> Node { provides | mixin : Supported } msg
+    -> Html { provides | mixin : Supported } msg
 mixin id attributes =
     node "a-mixin" (attribute "id" (Value.toString id) :: attributes) []
 

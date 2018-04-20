@@ -15,12 +15,12 @@ module XAFrame.Core.Entity
 {-| <https://aframe.io/docs/0.8.0/core/entity.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute, node, attribute)
+import XAFrame.Core exposing (Supported, Html, Attribute, node, attribute)
 import XAFrame.Core.Property as Property exposing (Property)
 import XAFrame.Core.Value as Value exposing (Value)
 
 
--- Node
+-- Html
 
 
 type alias EntityAttribute accepts msg =
@@ -35,7 +35,7 @@ type alias EntityAttribute accepts msg =
 
 
 type alias EntityNode msg =
-    Node
+    Html
         { any : Supported
         , animation : Supported
         , entity : Supported
@@ -46,7 +46,7 @@ type alias EntityNode msg =
 entity :
     List (EntityAttribute {} msg)
     -> List (EntityNode msg)
-    -> Node { provides | entity : Supported } msg
+    -> Html { provides | entity : Supported } msg
 entity =
     node "a-entity"
 
@@ -55,7 +55,7 @@ primitive :
     String
     -> List (EntityAttribute accepts msg)
     -> List (EntityNode msg)
-    -> Node { provides | entity : Supported } msg
+    -> Html { provides | entity : Supported } msg
 primitive =
     node
 

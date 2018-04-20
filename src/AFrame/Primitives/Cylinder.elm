@@ -9,7 +9,7 @@ module XAFrame.Primitives.Cylinder
 {-| <https://aframe.io/docs/0.8.0/primitives/a-cylinder.html>
 -}
 
-import XAFrame.Core exposing (Supported, Node, Attribute)
+import XAFrame.Core exposing (Supported, Html, Attribute)
 import XAFrame.Core.Entity exposing (EntityAttribute, EntityNode, primitive)
 import XAFrame.Core.Property exposing (toAttribute)
 import XAFrame.Core.Value exposing (Value)
@@ -27,7 +27,7 @@ cylinder :
             msg
         )
     -> List (EntityNode msg)
-    -> Node { provides | entity : Supported } msg
+    -> Html { provides | entity : Supported } msg
 cylinder =
     primitive "a-cylinder"
 
