@@ -6,5 +6,9 @@
     "strict": true,
     "sourceMap": false
   },
-  "files ": ["src/Intro/index.ts", "src/Minecraft/index.ts"]
+  "files ": [
+    "src/Intro/index.ts",
+    "src/Game/index.ts",
+    "src/Minecraft/index.ts"
+  ]
 }

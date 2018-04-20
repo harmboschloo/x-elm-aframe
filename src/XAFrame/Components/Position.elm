@@ -3,7 +3,7 @@ module XAFrame.Components.Position
         ( position
         )
 
-{-| see <https://aframe.io/docs/0.8.0/components/position.html>
+{-| <https://aframe.io/docs/0.8.0/components/position.html>
 -}
 
 import XAFrame.Core exposing (Supported, Attribute)

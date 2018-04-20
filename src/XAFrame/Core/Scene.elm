@@ -3,7 +3,7 @@ module XAFrame.Core.Scene
         ( scene
         )
 
-{-| see <https://aframe.io/docs/0.8.0/core/scene.html>
+{-| <https://aframe.io/docs/0.8.0/core/scene.html>
 -}
 
 import XAFrame.Core exposing (Supported, Node, Attribute, node)

@@ -8,7 +8,7 @@ module XAFrame.Core
         , attribute
         )
 
-{-| see <https://aframe.io/docs/0.8.0/introduction/>
+{-| <https://aframe.io/docs/0.8.0/introduction/>
 -}
 
 import Html

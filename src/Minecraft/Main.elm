@@ -1,6 +1,6 @@
 module Minecraft.Main exposing (main)
 
-{-| see <https://aframe.io/docs/0.8.0/guides/building-a-minecraft-demo.html>
+{-| <https://aframe.io/docs/0.8.0/guides/building-a-minecraft-demo.html>
 -}
 
 import Html exposing (Html)

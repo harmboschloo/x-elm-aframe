@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
   return {
     entry: {
       intro: "./src/Intro/index.ts",
+      game: "./src/Game/index.ts",
       minecraft: "./src/Minecraft/index.ts"
     },
 
