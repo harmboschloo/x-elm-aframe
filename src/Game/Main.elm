@@ -15,6 +15,9 @@ import AFrame.Components.Material.Standard as Standard exposing (standard)
 import AFrame.Components.Position exposing (position)
 import AFrame.Components.Rotation exposing (rotation)
 import AFrame.Components.Stats exposing (stats)
+import AFrame.PhysicsSystem.Physics as Physics exposing (physics)
+import AFrame.PhysicsSystem.DynamicBody exposing (dynamicBody)
+import AFrame.PhysicsSystem.StaticBody exposing (staticBody)
 import AFrame.Primitives.Box as Box exposing (box)
 import AFrame.Primitives.Cursor exposing (cursor)
 import AFrame.Primitives.Plane as Plane exposing (plane)
@@ -22,7 +25,7 @@ import AFrame.Primitives.Plane as Plane exposing (plane)
 
 main : Html msg
 main =
-    scene [ stats ]
+    scene [ stats, physics [ Physics.debug True ] ]
         [ entity
             [ camera []
             , lookControls []
@@ -36,6 +39,7 @@ main =
                     , Box.depth 3
                     , Box.height 0.5
                     , Box.width 0.25
+                    , staticBody []
                     ]
                     []
                 ]
@@ -45,6 +49,7 @@ main =
             [ position (Vec3 0 1 -4)
             , material (standard [ Standard.color Color.green ]) []
             , geometry (sphere [ Sphere.radius 0.5 ]) []
+            , dynamicBody []
             ]
             []
         , plane
@@ -52,6 +57,7 @@ main =
             , Plane.height 100
             , Plane.width 100
             , rotation (Vec3 -90 0 0)
+            , staticBody []
             ]
             []
         ]
