@@ -10,6 +10,7 @@ module AFrame
         , properties2
         , toAttribute
         , toAttributeWithName
+        , on
         )
 
 {-| <https://aframe.io/docs/0.8.0/introduction/>
@@ -17,6 +18,8 @@ module AFrame
 
 import Html
 import Html.Attributes
+import Html.Events
+import Json.Decode exposing (Decoder)
 
 
 type alias Html msg =
@@ -70,3 +73,8 @@ toAttribute (Property name value) =
 toAttributeWithName : String -> Property a -> Attribute msg
 toAttributeWithName name (Property _ value) =
     attribute name value
+
+
+on : String -> Decoder msg -> Attribute msg
+on =
+    Html.Events.on

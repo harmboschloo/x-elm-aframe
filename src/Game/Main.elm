@@ -3,8 +3,9 @@ module Game.Main exposing (main)
 {-| <https://hacks.mozilla.org/2018/03/immersive-aframe-low-poly/>
 -}
 
+import Html
 import Color
-import AFrame exposing (Html, Attribute)
+import AFrame exposing (Html, Attribute, on)
 import AFrame.Core exposing (Vec3, scene, entity)
 import AFrame.Components.Camera exposing (camera)
 import AFrame.Components.Geometry exposing (geometry)
@@ -18,13 +19,49 @@ import AFrame.Components.Stats exposing (stats)
 import AFrame.PhysicsSystem.Physics as Physics exposing (physics)
 import AFrame.PhysicsSystem.DynamicBody exposing (dynamicBody)
 import AFrame.PhysicsSystem.StaticBody exposing (staticBody)
+import AFrame.PhysicsSystem.Body exposing (Body, onBodyLoaded)
 import AFrame.Primitives.Box as Box exposing (box)
 import AFrame.Primitives.Cursor exposing (cursor)
 import AFrame.Primitives.Plane as Plane exposing (plane)
 
 
-main : Html msg
-main =
+-- Model
+
+
+type alias Model =
+    { ball : Maybe Body
+    }
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { ball = Nothing
+      }
+    , Cmd.none
+    )
+
+
+
+--Update
+
+
+type Msg
+    = OnBallLoaded Body
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        OnBallLoaded body ->
+            ( { model | ball = Just body }, Cmd.none )
+
+
+
+-- View
+
+
+view : Model -> Html Msg
+view model =
     scene [ stats, physics [ Physics.debug True ] ]
         [ entity
             [ camera []
@@ -50,6 +87,7 @@ main =
             , material (standard [ Standard.color Color.green ]) []
             , geometry (sphere [ Sphere.radius 0.5 ]) []
             , dynamicBody []
+            , onBodyLoaded OnBallLoaded
             ]
             []
         , plane
@@ -61,3 +99,13 @@ main =
             ]
             []
         ]
+
+
+main : Program Never Model Msg
+main =
+    Html.program
+        { init = init
+        , update = update
+        , subscriptions = always Sub.none
+        , view = view
+        }
