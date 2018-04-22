@@ -1,4 +1,4 @@
-module AFrame.PhysicsSystem.Physics
+module AFrame.Systems.Physics
     exposing
         ( Physics
         , physics

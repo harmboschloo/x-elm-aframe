@@ -5,6 +5,9 @@ module Game.Main exposing (main)
 
 import Html
 import Color
+import Process
+import Task
+import Time
 import AFrame exposing (Html, Attribute, on)
 import AFrame.Core exposing (Vec3, scene, entity)
 import AFrame.Components.Camera exposing (camera)
@@ -16,26 +19,38 @@ import AFrame.Components.Material.Standard as Standard exposing (standard)
 import AFrame.Components.Position exposing (position)
 import AFrame.Components.Rotation exposing (rotation)
 import AFrame.Components.Stats exposing (stats)
-import AFrame.PhysicsSystem.Physics as Physics exposing (physics)
-import AFrame.PhysicsSystem.DynamicBody exposing (dynamicBody)
-import AFrame.PhysicsSystem.StaticBody exposing (staticBody)
-import AFrame.PhysicsSystem.Body exposing (Body, onBodyLoaded)
+import AFrame.Components.DynamicBody exposing (dynamicBody)
+import AFrame.Components.StaticBody exposing (staticBody)
+import AFrame.PhysicsSystem exposing (Body, Collision, onBodyLoaded, onCollide)
 import AFrame.Primitives.Box as Box exposing (box)
 import AFrame.Primitives.Cursor exposing (cursor)
 import AFrame.Primitives.Plane as Plane exposing (plane)
+import AFrame.Systems.Physics as Physics exposing (physics)
 
 
 -- Model
 
 
 type alias Model =
-    { ball : Maybe Body
+    { status : Status
+    , ballId : Int
+    , resetBallKey : Int
+    , score : Int
     }
+
+
+type Status
+    = Initializing
+    | Active
+    | Resetting
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { ball = Nothing
+    ( { status = Initializing
+      , ballId = 0
+      , resetBallKey = 0
+      , score = 0
       }
     , Cmd.none
     )
@@ -46,14 +61,40 @@ init =
 
 
 type Msg
-    = OnBallLoaded Body
+    = BallLoaded Body
+    | PaddleCollided Collision
+    | Resetted
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        OnBallLoaded body ->
-            ( { model | ball = Just body }, Cmd.none )
+    case Debug.log "msg" msg of
+        BallLoaded body ->
+            ( { model
+                | ballId = body.id
+                , status = Active
+              }
+            , Cmd.none
+            )
+
+        PaddleCollided collision ->
+            if model.status == Active && collision.body.id == model.ballId then
+                ( { model
+                    | score = model.score + 1
+                    , status = Resetting
+                  }
+                , (2 * Time.second)
+                    |> Process.sleep
+                    |> Task.perform (always Resetted)
+                )
+            else
+                ( model, Cmd.none )
+
+        Resetted ->
+            if model.status == Resetting then
+                ( { model | status = Active }, Cmd.none )
+            else
+                ( model, Cmd.none )
 
 
 
@@ -77,6 +118,7 @@ view model =
                     , Box.height 0.5
                     , Box.width 0.25
                     , staticBody []
+                    , onCollide PaddleCollided
                     ]
                     []
                 ]
@@ -87,7 +129,7 @@ view model =
             , material (standard [ Standard.color Color.green ]) []
             , geometry (sphere [ Sphere.radius 0.5 ]) []
             , dynamicBody []
-            , onBodyLoaded OnBallLoaded
+            , onBodyLoaded BallLoaded
             ]
             []
         , plane
