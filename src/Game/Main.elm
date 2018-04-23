@@ -8,7 +8,7 @@ import Color
 import Process
 import Task
 import Time
-import AFrame exposing (Html, Attribute, on)
+import AFrame exposing (Html, Attribute, attribute, on)
 import AFrame.Core exposing (Vec3, scene, entity)
 import AFrame.Components.Camera exposing (camera)
 import AFrame.Components.Geometry exposing (geometry)
@@ -20,8 +20,9 @@ import AFrame.Components.Position exposing (position)
 import AFrame.Components.Rotation exposing (rotation)
 import AFrame.Components.Stats exposing (stats)
 import AFrame.Components.DynamicBody exposing (dynamicBody)
+import AFrame.Components.DynamicBodyReset as DynamicBodyReset exposing (dynamicBodyReset)
 import AFrame.Components.StaticBody exposing (staticBody)
-import AFrame.PhysicsSystem exposing (Body, Collision, onBodyLoaded, onCollide)
+import AFrame.Events.Physics exposing (Body, Collision, onBodyLoaded, onCollide)
 import AFrame.Primitives.Box as Box exposing (box)
 import AFrame.Primitives.Cursor exposing (cursor)
 import AFrame.Primitives.Plane as Plane exposing (plane)
@@ -34,7 +35,7 @@ import AFrame.Systems.Physics as Physics exposing (physics)
 type alias Model =
     { status : Status
     , ballId : Int
-    , resetBallKey : Int
+    , ballResetKey : Int
     , score : Int
     }
 
@@ -49,7 +50,7 @@ init : ( Model, Cmd Msg )
 init =
     ( { status = Initializing
       , ballId = 0
-      , resetBallKey = 0
+      , ballResetKey = 0
       , score = 0
       }
     , Cmd.none
@@ -72,6 +73,7 @@ update msg model =
         BallLoaded body ->
             ( { model
                 | ballId = body.id
+                , ballResetKey = model.ballResetKey + 1
                 , status = Active
               }
             , Cmd.none
@@ -92,7 +94,12 @@ update msg model =
 
         Resetted ->
             if model.status == Resetting then
-                ( { model | status = Active }, Cmd.none )
+                ( { model
+                    | ballResetKey = model.ballResetKey + 1
+                    , status = Active
+                  }
+                , Cmd.none
+                )
             else
                 ( model, Cmd.none )
 
@@ -129,7 +136,14 @@ view model =
             , material (standard [ Standard.color Color.green ]) []
             , geometry (sphere [ Sphere.radius 0.5 ]) []
             , dynamicBody []
+            , dynamicBodyReset
+                [ DynamicBodyReset.key model.ballResetKey
+                , DynamicBodyReset.position (Vec3 0 0.6 -4)
+                , DynamicBodyReset.velocity (Vec3 0 5 0)
+                , DynamicBodyReset.angularVelocity (Vec3 0 0 0)
+                ]
             , onBodyLoaded BallLoaded
+            , attribute "id" "ball"
             ]
             []
         , plane

@@ -1,13 +1,13 @@
-module AFrame.PhysicsSystem
+module AFrame.Events.Physics
     exposing
         ( Body
         , Collision
         , Vec3
+        , onBodyLoaded
+        , onCollide
         , bodyDecoder
         , collisionDecoder
         , vec3Decoder
-        , onBodyLoaded
-        , onCollide
         )
 
 {-| <https://github.com/donmccurdy/aframe-physics-system#events>
@@ -15,6 +15,26 @@ module AFrame.PhysicsSystem
 
 import Json.Decode as Decode exposing (Decoder)
 import AFrame exposing (Attribute, on)
+
+
+onBodyLoaded : (Body -> msg) -> Attribute msg
+onBodyLoaded msg =
+    on "body-loaded"
+        (Decode.map msg
+            (Decode.at [ "detail", "body" ] bodyDecoder)
+        )
+
+
+onCollide : (Collision -> msg) -> Attribute msg
+onCollide msg =
+    on "collide"
+        (Decode.map msg
+            (Decode.field "detail" collisionDecoder)
+        )
+
+
+
+-- Data
 
 
 type alias Body =
@@ -56,23 +76,3 @@ vec3Decoder =
         (Decode.field "x" Decode.float)
         (Decode.field "y" Decode.float)
         (Decode.field "z" Decode.float)
-
-
-
--- Events
-
-
-onBodyLoaded : (Body -> msg) -> Attribute msg
-onBodyLoaded msg =
-    on "body-loaded"
-        (Decode.map msg
-            (Decode.at [ "detail", "body" ] bodyDecoder)
-        )
-
-
-onCollide : (Collision -> msg) -> Attribute msg
-onCollide msg =
-    on "collide"
-        (Decode.map msg
-            (Decode.field "detail" collisionDecoder)
-        )

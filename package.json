@@ -10,6 +10,7 @@
     "start": "webpack-dev-server -d"
   },
   "dependencies": {
+    "@types/cannon": "^0.1.2",
     "aframe": "^0.8.1"
   },
   "devDependencies": {
