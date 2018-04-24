@@ -5,12 +5,14 @@ module AFrame.Core
         , bool
         , color
         , vec3
+        , id
         , scene
         , entity
         )
 
-import AFrame exposing (Html, Attribute, node)
+import AFrame exposing (Html, Attribute, node, attribute)
 import Color
+import Html.Lazy exposing (lazy)
 
 
 -- Property Types
@@ -119,14 +121,28 @@ vec3 { x, y, z } =
 
 
 
+-- Attributes
+
+
+id : String -> Attribute msg
+id =
+    attribute "id"
+
+
+
 -- Nodes
 
 
 {-| <https://aframe.io/docs/0.8.0/core/scene.html>
+
+AFrame changes the dom extensively, which confuses the virtual dom of Elm.
+That's why the scene can only be static html.
+This is enforced by using `Html.Lazy.lazy` with and empty model.
+
 -}
 scene : List (Attribute msg) -> List (Html msg) -> Html msg
-scene =
-    node "a-scene"
+scene attributes children =
+    lazy (always <| node "a-scene" attributes children) ()
 
 
 {-| <https://aframe.io/docs/0.8.0/core/entity.html>
